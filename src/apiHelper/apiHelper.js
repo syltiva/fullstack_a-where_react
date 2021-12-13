@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export const baseURL= process.env.REACT_APP_API_URL
+export const baseURL = process.env.REACT_APP_API_URL
 
 const apiHelper = axios.create({baseURL});
 
@@ -9,6 +9,7 @@ apiHelper.interceptors.request.use(
         let token;
         try {
             const jwt_data = await JSON.parse(localStorage.getItem('jwtawhere'));
+            console.log('parsed from local storage', jwt_data)
             token = jwt_data.token
             if (token) config.headers.authorization = token;
         }   catch (error) {
