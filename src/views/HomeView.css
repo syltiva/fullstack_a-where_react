@@ -1,0 +1,25 @@
+h1 {
+    position: absolute;
+    z-index: 10;
+    left: 1rem
+}
+
+.search {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    max-width: 400px;
+    z-index: 10;
+}
+
+.locate {
+    position: absolute;
+    top: 0.5rem;
+    right: 4.5rem;
+    background: none;
+    border: none;
+    z-index: 10;    
+
+}
