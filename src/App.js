@@ -7,6 +7,7 @@ import NavBar from './components/NavBar'
 import SignupView from './views/SignupView';
 import LoginView from './views/LoginView';
 import HomeView from './views/HomeView'
+import AddPostView from './views/AddPostView'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<SignupView/>} />
           <Route path="/login" element={<LoginView/>} />
           <Route path="/" element={<HomeView/>} />
+          <Route path="/addincident" element={<AddPostView/>} />
         </Routes>
       </BrowserRouter>
 

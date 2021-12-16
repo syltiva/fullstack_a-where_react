@@ -2,7 +2,7 @@ import mapStyles from "./mapStyles"
 import React, { useState, useRef, useCallback } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api" // Google Maps API
 import { formatRelative } from 'date-fns'
-import usePlacesAutoComplete, { getGeocode, getLatLng } from "use-places-autocomplete"; // Google Places Search
+import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete"; // Google Places Search
 import {
     Combobox,
     ComboboxInput,
@@ -12,6 +12,9 @@ import {
 } from '@reach/combobox' // Displays Google Places Search results
 import "@reach/combobox/styles.css"
 import "./HomeView.css"
+import { useNavigate } from "react-router";
+import { NavLink } from "react-router-dom";
+
 
 
 // Map options passed through the Google Maps component, to avoid unwanted/accidental re-rendering
@@ -34,6 +37,7 @@ const options = {
 
 
 const HomeView = () => {
+    const navigate = useNavigate();
     // LoadScript hook to set up the google script
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -47,7 +51,7 @@ const HomeView = () => {
     // Setting markers on map on click
     const onMapClick = useCallback((event) => {
         setMarkers((current) => [
-            ...current, 
+            // ...current, 
             {
             lat: event.latLng.lat(),
             lng: event.latLng.lng(),
@@ -66,7 +70,7 @@ const HomeView = () => {
     // The action of dragging the map and search
     const panTo = useCallback(({lat, lng}) => {
         mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(14);
+        mapRef.current.setZoom(15);
     }, []);
 
     if (loadError) return "Error loading maps";
@@ -87,7 +91,7 @@ const HomeView = () => {
         
         <GoogleMap 
             mapContainerStyle={mapContainerStyle} 
-            zoom={13} 
+            zoom={15} 
             center={center}
             options={options}
             onClick={onMapClick}
@@ -116,12 +120,15 @@ const HomeView = () => {
                         onCloseClick={() => setSelected(null)}
                     >
                     <div>
-                        <h6>incident happened</h6>
+                        {console.log(selected)}
+                        <h6><NavLink to='/addincident'>report an incident</NavLink></h6>
                         <p>@ {formatRelative(selected.time, new Date())}</p>
                     </div>
                     </InfoWindow>
                     ) : null
                     }
+
+
         </GoogleMap>
     </div>
     )
@@ -158,13 +165,13 @@ function Search({panTo}) {
         suggestions: {status, data}, 
         setValue, 
         clearSuggestions
-    } = usePlacesAutoComplete({
+    } = usePlacesAutocomplete({
         requestOptions: {
             location: {lat: () => 25.761681, lng: () => -80.191788, },
             radius: 200 * 1000, // kilometers converted into meters
         }
     });
-    // Popup info boxes
+    
     return (
         <div className="search">
             <Combobox 
@@ -192,8 +199,8 @@ function Search({panTo}) {
                     <ComboboxPopover>
                         <ComboboxList>
                             {status === "OK" &&  
-                                data.map(({id, description}) => (
-                                    <ComboboxOption key={id} value={description} />
+                                data.map(({_id, description}) => (
+                                    <ComboboxOption key={_id} value={description} />
                     ))}
                         </ComboboxList>
                 </ComboboxPopover>
