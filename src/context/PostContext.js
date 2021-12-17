@@ -25,7 +25,7 @@ const PostProvider = ({children}) => {
     })
 
     useEffect(() => {
-
+        getAllPosts()
     }, [])
 
     const getAllPosts = async () => {
@@ -35,6 +35,7 @@ const PostProvider = ({children}) => {
             setPosts(response.data);
             setLoading(false)
         }, 1000)
+     
     }
 
     const getPostById = async (id) => {
@@ -61,7 +62,7 @@ const PostProvider = ({children}) => {
         obj.date = new Date().toLocaleDateString();
         const response = await apiHelper.post("/posts/post", newPost);
         await imageUploadToApi (response.data._id, image)
-        toast.success("Incident created");
+        toast.success("Incident created. Thank you for your contribution.");
         getAllPosts();
     }
 
@@ -71,13 +72,13 @@ const PostProvider = ({children}) => {
         if (obj.author._id !== user._id) return;
         const response = await apiHelper.put(`/posts/post/${id}`, newPost);
         await imageUploadToApi (response.data._id, image)
-        toast.success("Incident updated");
+        toast.success("Incident updated.");
         getAllPosts();
     }
 
     const deletePostFromApi = async (id) => {
         await apiHelper.delete(`/posts/post/${id}`)
-        toast.error("Incident deleted")
+        toast.error("Incident deleted.")
         getAllPosts();
     }
 

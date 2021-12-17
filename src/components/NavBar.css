@@ -1,0 +1,10 @@
+.navBar {
+    background-color: rgba(41,97,81,255);
+  
+}
+
+a {
+    text-decoration: none !important;
+    color: white !important;
+    margin: 0 5px 0 5px !important
+}

@@ -1,11 +1,15 @@
 import { createContext, useEffect, useState } from 'react';
 import apiHelper from '../apiHelper/apiHelper'
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 export const AuthContext = createContext({})
 
+
+
 const AuthProvider = ({children}) => {
     const jwt_string = "jwtawhere"
+
     const [loggedIn, setLoggedIn] = useState(false)
     const [userName, setUserName] = useState("");
     const [user, setUser] = useState({
@@ -67,6 +71,8 @@ const AuthProvider = ({children}) => {
     const logoutUser = () => {
         toast.warning("Logged out, Goodbye!")
         localStorage.removeItem(jwt_string);
+       
+
     }
 
 

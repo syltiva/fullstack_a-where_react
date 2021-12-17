@@ -6,7 +6,7 @@ h1 {
 
 .search {
     position: absolute;
-    top: 1rem;
+    top: 4.25rem;
     left: 50%;
     transform: translate(-50%);
     width: 100%;
@@ -17,9 +17,15 @@ h1 {
 .locate {
     position: absolute;
     top: 0.5rem;
-    right: 4.5rem;
+    right: 2%;
+    top: 8%;
     background: none;
     border: none;
     z-index: 10;    
 
+}
+
+a {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px gray;
 }

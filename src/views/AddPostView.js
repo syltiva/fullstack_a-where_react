@@ -18,7 +18,7 @@ import { useLoadScript } from "@react-google-maps/api"
 
 import { Animated } from "react-animated-css"
 import { useContext, useEffect, useState } from 'react'
-import { useHistory, useNavigate } from 'react-router'
+import { useHistory, useNavigate, useParams } from 'react-router'
 
 import { Spinner } from 'react-bootstrap' 
 import { PostContext } from '../context/PostContext'
@@ -26,7 +26,6 @@ import { PostContext } from '../context/PostContext'
 const libraries = ["places"]
 
 const AddPostView = () => {
-
     const navigate = useNavigate()
     const { createPostToApi, singlePost, setSinglePost } = useContext(PostContext)
 
@@ -36,6 +35,7 @@ const AddPostView = () => {
     const [preview, setPreview] = useState("")
     const [addressError, setAddressError] = useState("search");
     const [currentAddress, setCurrentAddress] = useState("")
+
 
     const Search = () => {
         const {
@@ -56,23 +56,8 @@ const AddPostView = () => {
     
         useEffect(() => {
           setValue(currentAddress, false);
-        }, []);}
-
-    useEffect(() => {
-        setSinglePost ({
-        title: "",
-        image: "",
-        date: "",
-        address:"",
-        latitude: 0,
-        longitude: 0,
-        severity: "",
-        policeReport: false,
-        content: "",
-        author: ""
-        })
-    }, []);
-
+        }, []);
+    }
 
     const handleChange = event => {
         setSinglePost ({
@@ -150,27 +135,28 @@ const AddPostView = () => {
                 <label>Date:</label>
                 <input 
                     className="form-control" 
-                    type="text" 
+                    type="date" 
                     name="date" 
                     onChange={handleChange} 
                     placeholder="date" 
                 />   
-                <label>Latitude: </label>
-                <input 
+                <h8 style={{textAlign: 'left!important'}}>Latitude: {singlePost.latitude} </h8>
+                <br/>
+                {/* <input 
+                    value={singlePost.latitude}
                     className="form-control" 
                     type="number" 
                     name="latitude" 
-                    onChange={handleChange} 
                     placeholder="latitude" 
-                />
-                <label>Longitude: </label>
-                <input 
+                /> */}
+                <h8 style={{textAlign: 'left!important'}}>Longitude: {singlePost.longitude}</h8>
+                {/* <input 
+                    value={singlePost.longitude}
                     className="form-control" 
                     type="number" 
                     name="longitude" 
-                    onChange={handleChange} 
                     placeholder="longitude" 
-                />
+                /> */}<br/>
                 <label>Severity: </label>
                 <select 
                     defaultValue={"title"}
@@ -205,12 +191,12 @@ const AddPostView = () => {
                     type="text" 
                     name="content" 
                     onChange={handleChange} 
-                    placeholder="Describe the incident" 
+                    placeholder="Summarize the incident" 
                 />
                 <button 
                     onClick={handleSubmit}
                     className="btn btn-outline-dark form-control">
-                    Add Post
+                    Add Incident
                 </button>
                 <img style={{ width:200, height: "auto", margin: "20px 0 40px 0"}} src={preview} />
 
