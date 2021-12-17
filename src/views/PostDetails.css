@@ -1,0 +1,9 @@
+.infoCard {
+    border: solid 1px gray;
+    width: 75vw;
+    border-radius: 2%;
+    box-shadow: 2px 2px 8px gray;
+    padding: 20px;
+    margin: 0 auto;
+}
+

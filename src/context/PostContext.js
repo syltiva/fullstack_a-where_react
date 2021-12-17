@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import apiHelper from '../apiHelper/apiHelper'
 import { toast } from 'react-toastify'
+import { Navigate } from 'react-router';
 
 
 
@@ -80,6 +81,7 @@ const PostProvider = ({children}) => {
         await apiHelper.delete(`/posts/post/${id}`)
         toast.error("Incident deleted.")
         getAllPosts();
+        await navigate('/')
     }
 
     return (

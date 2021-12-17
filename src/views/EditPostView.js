@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { PostContext } from "../context/PostContext"
+import './EditPost.css'
 
 function EditPostView() {
     const { singlePost, getPostById, setSinglePost, editPostOnApi, deletePostFromApi } = useContext(PostContext)
@@ -39,22 +40,23 @@ function EditPostView() {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
+        event.preventDefault()  
         await editPostOnApi(id, singlePost);
     };
 
     const handleDelete = async (event) => {
         event.preventDefault();
-        let choice = window.confirm("Delete Incident?")
+        let choice = window.confirm("Are you sure you what to remove the incident?")
         if (!choice) return;
         await deletePostFromApi(id)
+        console.log("deleted")
         navigate('/');
     };
 
     return (
         <div className="container mt-5">
             <form className="form">
-            <h2>Edit Incident: {singlePost.title}</h2>
+            <h2>Incident Title: {singlePost.title}</h2>
             <label>Title:</label>
             <input
                 name="title"
@@ -73,7 +75,7 @@ function EditPostView() {
                 accept="image/*"
                 placeholder="image"
             />
-            <label>Date:</label>
+            <label>Date: {singlePost.date}</label>
             <input
                 name="date"
                 value={singlePost.date}
@@ -124,13 +126,13 @@ function EditPostView() {
                 <button 
                     onClick={handleSubmit}
                     className="btn btn-outline-dark form-control">
-                    Edit Incident
+                    submit changes
                 </button>
                 <button
                     onClick={handleDelete}
                     className='btn btn-outline-dark form-control'
                     >
-                    Delete Incident
+                    remove incident
 
                 </button>
                 <img style={{ width:200, height: "auto", margin: "20px 0 40px 0"}} src={preview} />

@@ -1,38 +1,53 @@
 import { useContext, useEffect, useState} from "react"
-import {useParams} from "react-router"
+import {useNavigate, useParams} from "react-router"
 import {PostContext} from '../context/PostContext'
 import {AuthContext} from "../context/AuthContext"
+import {Link} from 'react-router-dom'
+import './PostDetails.css'
 
 const PostDetailsView = () => {
     const {id} = useParams()
     const {user} = useContext(AuthContext)
-    const {singlePost, getPostById} = useContext(PostContext)
+    const {singlePost, getPostById, deletePostFromApi, editPostOnApi} = useContext(PostContext)
 
     useEffect(() => {
         getPostById(id)
     })
 
+    const handleDelete = async (event) => {
+        const option = window.confirm("Remove the incident?");
+        if (!option) return;
+        event.preventDefault();
+        const response = await deletePostFromApi(id);
+        navigate('/')
+    }
+
+
 
 
 return (
-    <div className="container mt-5">
-    <h1>Incident Details</h1>
+    <>
+    <div className="container mt-5 infoCard">
     <h2>{singlePost.title}</h2>
-    <div className="row">
-    <div className="column-lg-12 column-sm-12 my-4 codeBox">
-    {singlePost.image}
-    <div style={{minHeight:80}} className="col-4 mt-2">
+    <img style={{
+        width: "30vw"
+    }}src={singlePost.image} alt="incident image"/>
+    <br/>
     <b>What happened? </b>{singlePost.content}<br/>
-    <b>Rate the severity: </b>{singlePost.severity}<br/>
+    <b>How severe was the incident? </b>{singlePost.severity} RISK<br/>
     <b>Was a police report filed? </b>{singlePost.policeReport ? "yes" : "no" }<br/>
-    posted on {singlePost.date} by {singlePost.author.name}
+    posted on {new Date(singlePost.date).toLocaleDateString()} by {singlePost.author.name}
 
-    </div>
-    </div>
+    </div><br/>
+    <Link to="/editincident/:id" style={{color: "black"}}
+                         
+                         className="btn btn-outline-dark"
+                     >edit incident</Link>
+                     <br/>
+                     </>
+  
 
-    </div>
 
-    </div>
 )
 }
 
