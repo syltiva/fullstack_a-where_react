@@ -27,7 +27,7 @@ const NavBar = () => {
           }}
           src="https://res.cloudinary.com/syltiva/image/upload/v1639455191/orange-localization-icon-11_xycltq.png"
         /></NavLink>
-        <Link to='/addincident' className='btn btn-outline-dark'>report an incident</Link>
+        <Link to='/addincident' className='btn btn-outline-dark'>report an incident</Link> <div style={{color: "lightgray"}}>* Click the location of your incident to mark it, then click "report an incident"</div>
         
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse className="justify-content-end">
