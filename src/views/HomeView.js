@@ -30,7 +30,7 @@ const libraries = ["places"];
 
 const mapContainerStyle = {
   width: "100vw",
-  height: "100vh",
+  height: "92vh",
 };
 // Default set point
 const center = {

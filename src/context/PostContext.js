@@ -1,10 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import apiHelper from '../apiHelper/apiHelper'
 import { toast } from 'react-toastify'
-import { Navigate } from 'react-router';
-
-
-
+import { useNavigate } from 'react-router';
 
 export const PostContext = createContext({});
 
@@ -24,6 +21,8 @@ const PostProvider = ({children}) => {
         author: ""
 
     })
+
+
 
     useEffect(() => {
         getAllPosts()
@@ -53,7 +52,7 @@ const PostProvider = ({children}) => {
         formData.append('image', img);
         const response = await apiHelper.post(`/posts/post/imageUpload/${id}`, formData)
         return response;
-    }
+        }
 
     const createPostToApi = async (obj) => {
         const {image, ...newPost} = obj
@@ -78,6 +77,7 @@ const PostProvider = ({children}) => {
     }
 
     const deletePostFromApi = async (id) => {
+        const navigate = useNavigate();
         await apiHelper.delete(`/posts/post/${id}`)
         toast.error("Incident deleted.")
         getAllPosts();

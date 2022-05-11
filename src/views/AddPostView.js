@@ -140,23 +140,11 @@ const AddPostView = () => {
                     onChange={handleChange} 
                     placeholder="date" 
                 />   
-                <h8 style={{textAlign: 'left!important'}}>Latitude: {singlePost.latitude} </h8>
+                <h6 style={{textAlign: 'left!important'}}>Latitude: {singlePost.latitude} </h6>
                 <br/>
-                {/* <input 
-                    value={singlePost.latitude}
-                    className="form-control" 
-                    type="number" 
-                    name="latitude" 
-                    placeholder="latitude" 
-                /> */}
-                <h8 style={{textAlign: 'left!important'}}>Longitude: {singlePost.longitude}</h8>
-                {/* <input 
-                    value={singlePost.longitude}
-                    className="form-control" 
-                    type="number" 
-                    name="longitude" 
-                    placeholder="longitude" 
-                /> */}<br/>
+                <h6 style={{textAlign: 'left!important'}}>Longitude: {singlePost.longitude}</h6>
+                    
+                <br/>
                 <label>Severity: </label>
                 <select 
                     defaultValue={"title"}
