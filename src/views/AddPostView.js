@@ -96,8 +96,7 @@ const AddPostView = () => {
             await navigate('/')
             setLoading(false)
         }, 2000)
-    }
-
+    };
 
     return (
         <>
@@ -143,7 +142,7 @@ const AddPostView = () => {
                 <h6 style={{textAlign: 'left!important'}}>Latitude: {singlePost.latitude} </h6>
                 <br/>
                 <h6 style={{textAlign: 'left!important'}}>Longitude: {singlePost.longitude}</h6>
-                    
+
                 <br/>
                 <label>Severity: </label>
                 <select 

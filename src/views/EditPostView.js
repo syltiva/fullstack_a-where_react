@@ -48,6 +48,7 @@ function EditPostView() {
         event.preventDefault();
         let choice = window.confirm("Are you sure you what to remove the incident?")
         if (!choice) return;
+        console.log("id", id)
         await deletePostFromApi(id)
         console.log("deleted")
         navigate('/');

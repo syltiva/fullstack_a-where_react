@@ -12,7 +12,10 @@ const PostDetailsView = () => {
 
     useEffect(() => {
         getPostById(id)
-    })
+    }, [])
+
+
+    const navigate = useNavigate();
 
     const handleDelete = async (event) => {
         const option = window.confirm("Remove the incident?");
@@ -39,7 +42,7 @@ return (
     posted on {new Date(singlePost.date).toLocaleDateString()} by {singlePost.author.name}
 
     </div><br/>
-    <Link to="/editincident/:id" style={{color: "black"}}
+    <Link to={`/editincident/${id}`} style={{color: "black"}}
                          
                          className="btn btn-outline-dark"
                      >edit incident</Link>

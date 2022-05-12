@@ -77,11 +77,9 @@ const PostProvider = ({children}) => {
     }
 
     const deletePostFromApi = async (id) => {
-        const navigate = useNavigate();
         await apiHelper.delete(`/posts/post/${id}`)
         toast.error("Incident deleted.")
         getAllPosts();
-        await navigate('/')
     }
 
     return (

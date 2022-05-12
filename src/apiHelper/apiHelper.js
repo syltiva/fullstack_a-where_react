@@ -9,7 +9,7 @@ apiHelper.interceptors.request.use(
         let token;
         try {
             const jwt_data = await JSON.parse(localStorage.getItem('jwtawhere'));
-            console.log('parsed from local storage', jwt_data)
+            console.log('parsed from local storage-- jwt_data:', jwt_data)
             token = jwt_data.token
             if (token) config.headers.authorization = token;
         }   catch (error) {
