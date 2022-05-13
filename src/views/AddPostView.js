@@ -33,7 +33,6 @@ const AddPostView = () => {
     
     const [loading, setLoading] = useState(false)
     const [preview, setPreview] = useState("")
-    const [addressError, setAddressError] = useState("search");
     const [currentAddress, setCurrentAddress] = useState("")
 
 

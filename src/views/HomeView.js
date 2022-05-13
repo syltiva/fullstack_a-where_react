@@ -49,8 +49,7 @@ const HomeView = () => {
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const { singlePost, setSinglePost, posts } = useContext(PostContext);
-  //   const [posts, setPosts, getAllPosts] = useContext(PostContext)
-  console.log("POST", posts);
+  console.log("All posts displayed:", posts);
 
   const navigate = useNavigate();
   // LoadScript hook to set up the google script
@@ -64,9 +63,6 @@ const HomeView = () => {
     mapRef.current = map;
   }, []);
 
-  useEffect(() => {
-
-  }, [])
 
   // The action of dragging the map and search
   const panTo = useCallback(({ lat, lng }) => {
@@ -239,21 +235,6 @@ const HomeView = () => {
               }}
             />
           ))}
-          {/* {selected && (
-            <InfoWindow
-              position={{ lat: marker.lat, lng: marker.lng }}
-              onCloseClick={() => setSelected(null)}
-            >
-              <div>
-                <h6>
-                  <NavLink to="/addincident">report an incident</NavLink>
-                </h6>
-                <p>@ {formatRelative(selected.time, new Date())}</p>
-
-              </div>
-
-            </InfoWindow>
-          )} */}
         </GoogleMap>
       </div>
     );

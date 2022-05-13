@@ -13,7 +13,7 @@ function EditPostView() {
 
     useEffect(() => {
         setSinglePost({
-            ...singlePost
+            ...singlePost, 
         })
 
     }, []);
@@ -32,6 +32,7 @@ function EditPostView() {
 
     const handleImageChange = (event) => {
         const imageFile = event.target.files[0];
+        console.log("imageFile", imageFile)
         setSinglePost({
             ...singlePost,
             image: imageFile
@@ -42,15 +43,16 @@ function EditPostView() {
     const handleSubmit = async (event) => {
         event.preventDefault()  
         await editPostOnApi(id, singlePost);
+        await navigate("/")
     };
 
     const handleDelete = async (event) => {
         event.preventDefault();
         let choice = window.confirm("Are you sure you what to remove the incident?")
         if (!choice) return;
-        console.log("id", id)
+        console.log("id to be deleted", id)
         await deletePostFromApi(id)
-        console.log("deleted")
+        console.log("post deleted")
         navigate('/');
     };
 
@@ -70,11 +72,12 @@ function EditPostView() {
             <label>Image:</label>
             <input
                 name="image"
-                value={singlePost.image}
+                // value={preview}
                 onChange={handleImageChange}
                 className="form-control"
                 accept="image/*"
                 placeholder="image"
+                type="file"
             />
             <label>Date: {singlePost.date}</label>
             <input
